@@ -1,0 +1,272 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6 d-flex align-items-stretch">
+            <div class="card w-100">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <h5 class="card-title fw-600 mb-4">Danh sách thể loại</h5>
+                         </div>
+                    <div class="col-lg-6 col-md-6">
+                            <input class="form-control" placeholder="Tìm kiếm ..." id="searchMovieTheater" />
+                    </div>
+                </div>
+                    <div class="table-responsive">
+                        <table class="table table-post text-nowrap mb-0 align-middle">
+                            <thead class="text-dark fs-4">
+                                <tr>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">Id</h6>
+                                    </th>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">Tên phòng</h6>
+                                    </th>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">Số lượng ghế</h6>
+                                    </th>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">Lệnh</h6>
+                                    </th>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">Trang thái</h6>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody_MovieTheater"></tbody>
+                        </table>
+                        <div id="messageNotFind" style="margin:auto;display:none; text-align:center;">Không tìm thấy</div>
+                    </div>
+                    <div id="loading" class=" m-auto  mt-4"></div>
+                </div>
+                <div class="card-tools p-5 pt-0 pb-0 m-auto" id="pagination"></div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title fw-semibold mb-4">Thể loại phim</h5>
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="formMovieTheater" method="post">
+                                @Html.AntiForgeryToken()
+                                <label class="form-label">Mã</label>
+                                <input class="form-control" id="idMovieTheater" name="id" disabled />
+                                <label class="form-label">Tên phòng</label>
+                                <input class="form-control" id="nameMovieTheater" name="name" />
+                                <label class="form-label">Số ghế</label>
+                                <input class="form-control" id="numberOfSeat" name="numberOfSeat" />
+                                <button class="btn btn-primary" type="submit">Lưu</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scriptMovieTheater{
+    <script>
+        var elementTableBody = $("#tbody_MovieTheater");
+        var ms = document.getElementById('messageNotFind');
+        $(document).ready(function () {
+            InsertMovieTheater();
+            loadData("", null, 2)
+            $("#searchMovieTheater").on("keyup", function (event) {
+                console.log(event);
+                var keyword = $('#searchMovieTheater').val();
+                loadData(keyword, null, 2)
+            });
+        });
+        function InsertMovieTheater() {
+            $('#formMovieTheater').submit(function (e) {
+                console.log("abc");
+                e.preventDefault();
+                var mt = {
+                    sttRapPhim: $("#idMovieTheater").val(),
+                    soPhongChieu: $("#nameMovieTheater").val(),
+                    soLuongGhe: $("#numberOfSeat").val()
+                };
+                var __RequestVerificationToken = $('input[name="__RequestVerificationToken"]').val();
+
+                $.ajax({
+                    url: '@Url.Action("Insert", "MovieTheater")',
+                    type: 'POST',
+                    data: { mt, __RequestVerificationToken},
+                    success: function (response) {
+                        if (response.status) {
+                            Swal.fire({
+                                position: "center-center",
+                                icon: "success",
+                                title: response.message,
+                                showConfirmButton: true,
+                                timer: 1500
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                                    location.reload(true);
+                                }
+                            });
+                        } else {
+                            Swal.fire({
+                                position: "center-center",
+                                icon: "error",
+                                title: response.message,
+                                showConfirmButton: true,
+                                timer: 1500
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                                    location.reload(true);
+                                }
+                            });
+                        }
+                    },
+                    error: function () {
+                        alert('Đã xảy ra lỗi');
+                    }
+                });
+
+
+            });
+        }
+        function loadData(keyword, page, pageSize) {
+            ShowLoading(true);
+            $.ajax({
+                url: '@Url.Action("LoadData","MovieTheater")',
+                type: 'GET',
+                dataType: 'json',
+                data: { keyword: keyword, page: page, pageSize: pageSize },
+                success: function (response) {
+                    if (response.status) {
+                        ShowLoading(false)
+                        elementTableBody.empty();
+                        $.each(response.Data, function (index, mt) {
+                            elementTableBody.append(`<tr>
+                                        <td><h6 class="fw-600 mb-0">${mt.sttRapPhim}</h6></td>
+                                        <td><h6 class="fw-600 mb-1">${mt.soPhongChieu}</h6></td>
+                                        <td><h6 class="fw-600 mb-1">${mt.soLuongGhe}</h6></td>
+                                        <td><button type="button" class="btn btn-primary" onclick="Edit(${mt.sttRapPhim})">Sửa</button>
+                                        <button type="button" class="btn ${mt.trangThai == false ?"btn-success" : "btn-danger"}" onclick="Status(${ mt.sttRapPhim })">${mt.trangThai == true ? "Bảo trì" : "Hoạt động"}</button>
+                                        <button type="button" class="btn btn-danger m-1" onclick="Delete(${mt.sttRapPhim})">Xóa</button></td>
+                                        <td><div class="d-flex align-items-center gap-2"><span class="badge ${(mt.trangThai == true ? "bg-success" : "bg-danger")}  rounded-3 fw-600">${mt.trangThai == true? "Hoạt động"  : "Bảo trì"}</span></div></td>
+                                    </tr>`);
+                        });
+                        ms.style.display = "none"
+                        if ((keyword.length > 0) && response.NumberPage == 0 && response.TotalItem == 0) ms.style.display = "block"
+                        Pagination(keyword, response.CurrentPage, response.NumberPage, response.PageSize);
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function (error) {
+                    console.error("Đã xảy ra lỗi");
+                }
+            });
+        }
+        function Edit(id) {
+            $.ajax({
+                url: '@Url.Action("Edit","MovieTheater")',
+                type: 'POST',
+                dataType: 'json',
+                data: { id: id },
+                success: function (response) {
+                    console.log("xyz");
+
+                    if (response.status) {
+                        $('#idMovieTheater').val(response.data.sttRapPhim);
+                        $('#nameMovieTheater').val(response.data.soPhongChieu);
+                        $('#numberOfSeat').val(response.data.soLuongGhe);
+                    } else {
+                        alert("Lấy dữ liệu lên thất bại !")
+                    }
+                },
+                error: function (error) {
+                    console.error("Đã xảy ra lỗi");
+                }
+            });
+        }
+        function Status(id) {
+              $.ajax({
+                    url: '@Url.Action("ChangeStatus","MovieTheater")',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (response) {
+                        if (response.status) {
+                            Swal.fire({
+                                position: "center-center",
+                                icon: "success",
+                                title: response.message,
+                                showConfirmButton: true,
+                                timer: 1500
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                                    location.reload(true);
+                                }
+                            });
+                        } else {
+                            Swal.fire({
+                                position: "center-center",
+                                icon: "error",
+                                title: response.message,
+                                showConfirmButton: true,
+                                timer: 1500
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                                    location.reload(true);
+                                }
+                            });
+                        }
+                    },
+                  error: function (error) {
+                      alert("Đã xảy ra lỗi");
+                    }
+                });
+        }
+       function Delete(id) {
+             Swal.fire({
+                title: "Bạn chắc chắn?",
+                text: "Bạn sẽ không thể khôi phục khi đã xóa",
+                icon: "warning",
+                showCancelButton: true,
+                cancelButtonColor: "#d33",
+                cancelButtonText: "Đóng",
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: "Xác nhận xóa"
+             }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '@Url.Action("Delete","MovieTheater")',
+                        type: 'POST',
+                        data: {id:id},
+                        success: function (response) {
+                            if (response.status) {
+                                Swal.fire({
+                                    position: "center-center",
+                                    icon: "success",
+                                    title: response.message,
+                                    showConfirmButton: true,
+                                    timer: 1500
+                                }).then((result) => {
+                                    if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                                        location.reload(true);
+                                    }
+                                });
+
+                            } else {
+                                console.log("Xóa không thành công.");
+                            }
+                        },
+                        error: function (error) {
+                            alert("Đã xảy ra lỗi");
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+
+}
+

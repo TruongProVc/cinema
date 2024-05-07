@@ -1,0 +1,1036 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{361751A6-8D90-44E1-8180-6D0F6B801D73}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebApplication1</RootNamespace>
+    <AssemblyName>WebApplication1</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Pipelines.Sockets.Unofficial, Version=1.0.0.0, Culture=neutral, PublicKeyToken=42ea0a778e13fbe2, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pipelines.Sockets.Unofficial.2.2.8\lib\net472\Pipelines.Sockets.Unofficial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Pipelines, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Pipelines.5.0.1\lib\net461\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Channels, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Channels.5.0.0\lib\net461\System.Threading.Channels.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Asset\Css\icons\tabler-icons\fonts\tabler-icons.svg" />
+    <Content Include="Asset\Css\icons\tabler-icons\tabler-icons.css" />
+    <Content Include="Asset\Css\plugins.css" />
+    <Content Include="Asset\Css\styleLogin.css" />
+    <Content Include="Asset\Css\style.css" />
+    <Content Include="Asset\Css\styles.css" />
+    <Content Include="Asset\Css\styles.min.css" />
+    <Content Include="Asset\image\backgrounds\rocket.png" />
+    <Content Include="Asset\image\logos\dark-logo.svg" />
+    <Content Include="Asset\image\logos\favicon.png" />
+    <Content Include="Asset\image\profile\user-1.jpg" />
+    <Content Include="Asset\image\uploads\logows.png" />
+    <Content Include="Asset\image\uploads\ads1.png" />
+    <Content Include="Asset\image\uploads\ads2.png" />
+    <Content Include="Asset\image\uploads\author.png" />
+    <Content Include="Asset\image\uploads\author2.png" />
+    <Content Include="Asset\image\uploads\author3.png" />
+    <Content Include="Asset\image\uploads\author4.png" />
+    <Content Include="Asset\image\uploads\ava1.jpg" />
+    <Content Include="Asset\image\uploads\ava2.jpg" />
+    <Content Include="Asset\image\uploads\ava3.jpg" />
+    <Content Include="Asset\image\uploads\ava4.jpg" />
+    <Content Include="Asset\image\uploads\avatar-trang-4.jpg" />
+    <Content Include="Asset\image\uploads\blog-detail.jpg" />
+    <Content Include="Asset\image\uploads\blog-detail2.jpg" />
+    <Content Include="Asset\image\uploads\blog-it1.jpg" />
+    <Content Include="Asset\image\uploads\blog-it2.jpg" />
+    <Content Include="Asset\image\uploads\blog26.jpg" />
+    <Content Include="Asset\image\uploads\blog27.jpg" />
+    <Content Include="Asset\image\uploads\blog29.jpg" />
+    <Content Include="Asset\image\uploads\bloglist-it1.jpg" />
+    <Content Include="Asset\image\uploads\bloglist-it2.jpg" />
+    <Content Include="Asset\image\uploads\bloglist-it3.jpg" />
+    <Content Include="Asset\image\uploads\bloglist-it4.jpg" />
+    <Content Include="Asset\image\uploads\bloglist-it5.jpg" />
+    <Content Include="Asset\image\uploads\bloglist-it6.jpg" />
+    <Content Include="Asset\image\uploads\blogv21.jpg" />
+    <Content Include="Asset\image\uploads\blogv22.jpg" />
+    <Content Include="Asset\image\uploads\blogv23.jpg" />
+    <Content Include="Asset\image\uploads\blogv24.jpg" />
+    <Content Include="Asset\image\uploads\blogv25.jpg" />
+    <Content Include="Asset\image\uploads\blogv29.jpg" />
+    <Content Include="Asset\image\uploads\cast1.jpg" />
+    <Content Include="Asset\image\uploads\cast2.jpg" />
+    <Content Include="Asset\image\uploads\cast3.jpg" />
+    <Content Include="Asset\image\uploads\cast4.jpg" />
+    <Content Include="Asset\image\uploads\cast5.jpg" />
+    <Content Include="Asset\image\uploads\cast6.jpg" />
+    <Content Include="Asset\image\uploads\cast7.jpg" />
+    <Content Include="Asset\image\uploads\cast9.jpg" />
+    <Content Include="Asset\image\uploads\ceb1.jpg" />
+    <Content Include="Asset\image\uploads\ceb2.jpg" />
+    <Content Include="Asset\image\uploads\ceb21.jpg" />
+    <Content Include="Asset\image\uploads\ceb22.jpg" />
+    <Content Include="Asset\image\uploads\ceb23.jpg" />
+    <Content Include="Asset\image\uploads\ceb24.jpg" />
+    <Content Include="Asset\image\uploads\ceb25.jpg" />
+    <Content Include="Asset\image\uploads\ceb26.jpg" />
+    <Content Include="Asset\image\uploads\ceb27.jpg" />
+    <Content Include="Asset\image\uploads\ceb28.jpg" />
+    <Content Include="Asset\image\uploads\ceb29.jpg" />
+    <Content Include="Asset\image\uploads\ceb3.jpg" />
+    <Content Include="Asset\image\uploads\ceb4.jpg" />
+    <Content Include="Asset\image\uploads\ceb5.jpg" />
+    <Content Include="Asset\image\uploads\ceb6.jpg" />
+    <Content Include="Asset\image\uploads\ceb7.jpg" />
+    <Content Include="Asset\image\uploads\ceb8.jpg" />
+    <Content Include="Asset\image\uploads\ceb9.jpg" />
+    <Content Include="Asset\image\uploads\ceblist1.jpg" />
+    <Content Include="Asset\image\uploads\ceblist2.jpg" />
+    <Content Include="Asset\image\uploads\ceblist3.jpg" />
+    <Content Include="Asset\image\uploads\ceblist4.jpg" />
+    <Content Include="Asset\image\uploads\ceblist5.jpg" />
+    <Content Include="Asset\image\uploads\ceblist6.jpg" />
+    <Content Include="Asset\image\uploads\ceblist7.jpg" />
+    <Content Include="Asset\image\uploads\ceblist8.jpg" />
+    <Content Include="Asset\image\uploads\cebsingle2.png" />
+    <Content Include="Asset\image\uploads\celeb-hero-single.jpg" />
+    <Content Include="Asset\image\uploads\cm-img.png" />
+    <Content Include="Asset\image\uploads\drop-icon.png" />
+    <Content Include="Asset\image\uploads\err-img.png" />
+    <Content Include="Asset\image\uploads\error-bg.jpg" />
+    <Content Include="Asset\image\uploads\film1.jpg" />
+    <Content Include="Asset\image\uploads\film2.jpg" />
+    <Content Include="Asset\image\uploads\film3.jpg" />
+    <Content Include="Asset\image\uploads\film4.jpg" />
+    <Content Include="Asset\image\uploads\film5.jpg" />
+    <Content Include="Asset\image\uploads\film6.jpg" />
+    <Content Include="Asset\image\uploads\film7.jpg" />
+    <Content Include="Asset\image\uploads\film8.jpg" />
+    <Content Include="Asset\image\uploads\ft-bg.jpg" />
+    <Content Include="Asset\image\uploads\hero-bg.jpg" />
+    <Content Include="Asset\image\uploads\image1-1.jpg" />
+    <Content Include="Asset\image\uploads\image1.jpg" />
+    <Content Include="Asset\image\uploads\image10.jpg" />
+    <Content Include="Asset\image\uploads\image101.jpg" />
+    <Content Include="Asset\image\uploads\image11.jpg" />
+    <Content Include="Asset\image\uploads\image111.jpg" />
+    <Content Include="Asset\image\uploads\image12.jpg" />
+    <Content Include="Asset\image\uploads\image121.jpg" />
+    <Content Include="Asset\image\uploads\image13.jpg" />
+    <Content Include="Asset\image\uploads\image131.jpg" />
+    <Content Include="Asset\image\uploads\image14.jpg" />
+    <Content Include="Asset\image\uploads\image141.jpg" />
+    <Content Include="Asset\image\uploads\image15.jpg" />
+    <Content Include="Asset\image\uploads\image151.jpg" />
+    <Content Include="Asset\image\uploads\image16.jpg" />
+    <Content Include="Asset\image\uploads\image161.jpg" />
+    <Content Include="Asset\image\uploads\image17.jpg" />
+    <Content Include="Asset\image\uploads\image171.jpg" />
+    <Content Include="Asset\image\uploads\image18.jpg" />
+    <Content Include="Asset\image\uploads\image181.jpg" />
+    <Content Include="Asset\image\uploads\image19.jpg" />
+    <Content Include="Asset\image\uploads\image191.jpg" />
+    <Content Include="Asset\image\uploads\image2-1.jpg" />
+    <Content Include="Asset\image\uploads\image2.jpg" />
+    <Content Include="Asset\image\uploads\image20.jpg" />
+    <Content Include="Asset\image\uploads\image201.jpg" />
+    <Content Include="Asset\image\uploads\image21.jpg" />
+    <Content Include="Asset\image\uploads\image211.jpg" />
+    <Content Include="Asset\image\uploads\image3.jpg" />
+    <Content Include="Asset\image\uploads\image31.jpg" />
+    <Content Include="Asset\image\uploads\image4.jpg" />
+    <Content Include="Asset\image\uploads\image41.jpg" />
+    <Content Include="Asset\image\uploads\image5.jpg" />
+    <Content Include="Asset\image\uploads\image51.jpg" />
+    <Content Include="Asset\image\uploads\image6.jpg" />
+    <Content Include="Asset\image\uploads\image61.jpg" />
+    <Content Include="Asset\image\uploads\image7.jpg" />
+    <Content Include="Asset\image\uploads\image71.jpg" />
+    <Content Include="Asset\image\uploads\image8.jpg" />
+    <Content Include="Asset\image\uploads\image81.jpg" />
+    <Content Include="Asset\image\uploads\image9.jpg" />
+    <Content Include="Asset\image\uploads\image91.jpg" />
+    <Content Include="Asset\image\uploads\landing-dark-version.png" />
+    <Content Include="Asset\image\uploads\landing-light-version.png" />
+    <Content Include="Asset\image\uploads\movie-single.jpg" />
+    <Content Include="Asset\image\uploads\mv-it1.jpg" />
+    <Content Include="Asset\image\uploads\mv-it10.jpg" />
+    <Content Include="Asset\image\uploads\mv-it11.jpg" />
+    <Content Include="Asset\image\uploads\mv-it12.jpg" />
+    <Content Include="Asset\image\uploads\mv-it2.jpg" />
+    <Content Include="Asset\image\uploads\mv-it3.jpg" />
+    <Content Include="Asset\image\uploads\mv-it4.jpg" />
+    <Content Include="Asset\image\uploads\mv-it5.jpg" />
+    <Content Include="Asset\image\uploads\mv-it6.jpg" />
+    <Content Include="Asset\image\uploads\mv-it7.jpg" />
+    <Content Include="Asset\image\uploads\mv-it8.jpg" />
+    <Content Include="Asset\image\uploads\mv-it9.jpg" />
+    <Content Include="Asset\image\uploads\mv-item1.jpg" />
+    <Content Include="Asset\image\uploads\mv-item10.jpg" />
+    <Content Include="Asset\image\uploads\mv-item11.jpg" />
+    <Content Include="Asset\image\uploads\mv-item12.jpg" />
+    <Content Include="Asset\image\uploads\mv-item2.jpg" />
+    <Content Include="Asset\image\uploads\mv-item3.jpg" />
+    <Content Include="Asset\image\uploads\mv-item4.jpg" />
+    <Content Include="Asset\image\uploads\mv-item5.jpg" />
+    <Content Include="Asset\image\uploads\mv-item6.jpg" />
+    <Content Include="Asset\image\uploads\mv-item7.jpg" />
+    <Content Include="Asset\image\uploads\mv-item8.jpg" />
+    <Content Include="Asset\image\uploads\mv-item9.jpg" />
+    <Content Include="Asset\image\uploads\mv1.jpg" />
+    <Content Include="Asset\image\uploads\mv2.jpg" />
+    <Content Include="Asset\image\uploads\mv3.jpg" />
+    <Content Include="Asset\image\uploads\mv4.jpg" />
+    <Content Include="Asset\image\uploads\mv5.jpg" />
+    <Content Include="Asset\image\uploads\pexels-donaldtong94-109669 %281%29.jpg" />
+    <Content Include="Asset\image\uploads\pexels-donaldtong94-109669.jpg" />
+    <Content Include="Asset\image\uploads\play-vd.png" />
+    <Content Include="Asset\image\uploads\poster1.jpg" />
+    <Content Include="Asset\image\uploads\Screenshot 2024-04-26 140740.png" />
+    <Content Include="Asset\image\uploads\search-bg.png" />
+    <Content Include="Asset\image\uploads\search-bgsb.png" />
+    <Content Include="Asset\image\uploads\season.jpg" />
+    <Content Include="Asset\image\uploads\series-img.jpg" />
+    <Content Include="Asset\image\uploads\slider-bg.jpg" />
+    <Content Include="Asset\image\uploads\slider-bg2.jpg" />
+    <Content Include="Asset\image\uploads\slider1.jpg" />
+    <Content Include="Asset\image\uploads\slider2.jpg" />
+    <Content Include="Asset\image\uploads\slider3.jpg" />
+    <Content Include="Asset\image\uploads\slider4.jpg" />
+    <Content Include="Asset\image\uploads\sr-single.jpg" />
+    <Content Include="Asset\image\uploads\topsearch.png" />
+    <Content Include="Asset\image\uploads\trailer2.jpg" />
+    <Content Include="Asset\image\uploads\trailer3.png" />
+    <Content Include="Asset\image\uploads\trailer4.png" />
+    <Content Include="Asset\image\uploads\trailer5.jpg" />
+    <Content Include="Asset\image\uploads\trailer6.jpg" />
+    <Content Include="Asset\image\uploads\trailer7.jpg" />
+    <Content Include="Asset\image\uploads\user-hero-bg.jpg" />
+    <Content Include="Asset\image\uploads\user-img.png" />
+    <Content Include="Asset\image\uploads\userava1.jpg" />
+    <Content Include="Asset\image\uploads\userava2.jpg" />
+    <Content Include="Asset\image\uploads\userava3.jpg" />
+    <Content Include="Asset\image\uploads\userava4.jpg" />
+    <Content Include="Asset\image\uploads\userava5.jpg" />
+    <Content Include="Asset\image\uploads\vd-item1.jpg" />
+    <Content Include="Asset\image\uploads\vd-item2.jpg" />
+    <Content Include="Asset\image\uploads\vd-item3.jpg" />
+    <Content Include="Asset\image\uploads\vd-item4.jpg" />
+    <Content Include="Asset\image\uploads\wallpaperflare.com_wallpaper %2847%29.jpg" />
+    <Content Include="Asset\image\uploads\wallpaperflare.com_wallpaper %2848%29.jpg" />
+    <Content Include="Asset\image\uploads\z5357270324124_51888d4c57a51e7ce0903fff741fe2ed.jpg" />
+    <Content Include="Asset\image\uploads\z5357270352349_51f69395050e5b4907eecf22119f0097.jpg" />
+    <Content Include="Asset\image\uploads\z5357270364632_df696a1492f71e9ca9731769396f8c6a.jpg" />
+    <Content Include="Asset\image\uploads\z5384775704191_afe8e24495759a9d068061b836663c47.jpg" />
+    <Content Include="Asset\Javascript\p1.js" />
+    <Content Include="Asset\Javascript\scriptLogin.js" />
+    <Content Include="Asset\Javascript\custom.js" />
+    <Content Include="Asset\Javascript\dashboard.js" />
+    <Content Include="Asset\Javascript\plugins.js" />
+    <Content Include="Asset\Javascript\plugins2.js" />
+    <Content Include="Asset\Javascript\privatesite.js" />
+    <Content Include="Asset\Javascript\menu.js" />
+    <Content Include="Asset\Javascript\sidebar_dashboard.js" />
+    <Content Include="Asset\Lib\apexchart\dist\apexcharts.amd.js" />
+    <Content Include="Asset\Lib\apexchart\dist\apexcharts.amd.js.LICENSE.txt" />
+    <Content Include="Asset\Lib\apexchart\dist\apexcharts.common.js" />
+    <Content Include="Asset\Lib\apexchart\dist\apexcharts.css" />
+    <Content Include="Asset\Lib\apexchart\dist\apexcharts.esm.js" />
+    <Content Include="Asset\Lib\apexchart\dist\apexcharts.js" />
+    <Content Include="Asset\Lib\apexchart\dist\apexcharts.min.js" />
+    <Content Include="Asset\Lib\apexchart\samples\assets\github-data.js" />
+    <Content Include="Asset\Lib\apexchart\samples\assets\images\1101098.png" />
+    <Content Include="Asset\Lib\apexchart\samples\assets\images\2979121308_59539a3898_z.jpg" />
+    <Content Include="Asset\Lib\apexchart\samples\assets\images\4274635880_809a4b9d0d_z.jpg" />
+    <Content Include="Asset\Lib\apexchart\samples\assets\images\4679113782_ca13e2e6c0_z.jpg" />
+    <Content Include="Asset\Lib\apexchart\samples\assets\images\abstract.jpg" />
+    <Content Include="Asset\Lib\apexchart\samples\assets\images\clock.png" />
+    <Content Include="Asset\Lib\apexchart\samples\assets\images\ico-instagram.png" />
+    <Content Include="Asset\Lib\apexchart\samples\assets\images\ico-messenger.png" />
+    <Content Include="Asset\Lib\apexchart\samples\assets\images\stripes.jpg" />
+    <Content Include="Asset\Lib\apexchart\samples\assets\irregular-data-series.js" />
+    <Content Include="Asset\Lib\apexchart\samples\assets\ohlc.js" />
+    <Content Include="Asset\Lib\apexchart\samples\assets\stock-prices.js" />
+    <Content Include="Asset\Lib\apexchart\samples\assets\styles.css" />
+    <Content Include="Asset\Lib\apexchart\samples\react\area\area-datetime.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\area\area-github-style.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\area\area-spline.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\area\area-with-missing-data.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\area\area-with-negative.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\area\basic-area.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\area\stacked-area.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\area\timeseries-with-irregular-data.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\bar\bar-with-custom-data-labels.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\bar\bar-with-images.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\bar\bar-with-markers.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\bar\bar-with-negative.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\bar\basic-bar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\bar\grouped-bar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\bar\grouped-stacked-bar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\bar\patterned-bar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\bar\reversed-bar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\bar\stacked-bar-100.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\bar\stacked-bar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\boxPlot\basic.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\boxPlot\boxplot-scatter.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\boxPlot\horizontal-boxplot.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\bubble\3d-bubble.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\bubble\simple-bubble.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\candlestick\basic.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\candlestick\candlestick-bar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\candlestick\candlestick-category.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\candlestick\candlestick-line.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\column\basic-column.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\column\column-with-data-labels.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\column\column-with-group-label.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\column\column-with-markers.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\column\column-with-negative.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\column\column-with-rotated-data-labels.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\column\column-with-rotated-labels.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\column\data-color.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\column\distributed-columns.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\column\dumbbell-chart.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\column\dynamic-loaded-chart.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\column\grouped-stacked-column.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\column\range-column.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\column\stacked-column-100.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\column\stacked-column-with-line.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\column\stacked-column.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\funnel\funnel.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\funnel\pyramid.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\heatmap\basic.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\heatmap\color-range.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\heatmap\image-fill.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\heatmap\multiple-color-scales-flipped.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\heatmap\multiple-color.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\heatmap\rounded.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\line\basic-line.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\line\brush-charts.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\line\dashed-line.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\line\gradient-line.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\line\line-with-annotations.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\line\line-with-data-labels.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\line\line-with-image.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\line\line-with-missing-data.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\line\logarithmic-line.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\line\realtime.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\line\stepline.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\line\syncing-charts.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\line\zoomable-timeseries.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\misc\annotations-example.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\misc\minMaxPoints.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\misc\range-annotations-inverted-axis-example.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\mixed\line-area.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\mixed\line-column-area.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\mixed\line-column.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\mixed\line-scatter.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\mixed\multiple-yaxes.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\pie\donut-update.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\pie\donut-with-pattern.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\pie\gradient-donut.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\pie\monochrome-pie.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\pie\pie-with-image.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\pie\semi-donut.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\pie\simple-donut.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\pie\simple-pie.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\polarArea\basic-polar-area.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\polarArea\polar-area-monochrome.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\radar\basic-radar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\radar\radar-multiple-series.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\radar\radar-with-polygon-fill.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\radialBar\circle-chart-multiple.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\radialBar\circle-chart-with-image.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\radialBar\circle-chart.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\radialBar\circle-custom-angle.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\radialBar\circle-gradient.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\radialBar\semi-circle-chart.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\radialBar\stroked-gauge.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\rangeArea\basic-range-area.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\rangeArea\range-area-line-combo.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\scatter\scatter-basic.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\scatter\scatter-datetime.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\scatter\scatter-images.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\sparklines\sparklines.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\timelines\advanced.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\timelines\controlling-colors.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\timelines\dumbbell-chart-horizontal.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\timelines\multi-series-group-rows.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\timelines\multi-series.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\timelines\simple.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\treemap\basic.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\treemap\color-scale.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\treemap\distributed.html" />
+    <Content Include="Asset\Lib\apexchart\samples\react\treemap\multi-dimensional.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\area\area-datetime.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\area\area-github-style.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\area\area-spline.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\area\area-with-missing-data.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\area\area-with-negative.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\area\basic-area.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\area\stacked-area.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\area\timeseries-with-irregular-data.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\bar\bar-with-custom-data-labels.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\bar\bar-with-images.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\bar\bar-with-markers.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\bar\bar-with-negative.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\bar\basic-bar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\bar\grouped-bar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\bar\grouped-stacked-bar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\bar\patterned-bar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\bar\reversed-bar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\bar\stacked-bar-100.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\bar\stacked-bar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\boxPlot\basic.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\boxPlot\boxplot-scatter.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\boxPlot\horizontal-boxplot.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\bubble\3d-bubble.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\bubble\simple-bubble.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\candlestick\basic.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\candlestick\candlestick-bar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\candlestick\candlestick-category.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\candlestick\candlestick-line.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\column\basic-column.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\column\column-with-data-labels.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\column\column-with-group-label.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\column\column-with-markers.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\column\column-with-negative.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\column\column-with-rotated-data-labels.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\column\column-with-rotated-labels.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\column\data-color.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\column\distributed-columns.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\column\dumbbell-chart.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\column\dynamic-loaded-chart.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\column\grouped-stacked-column.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\column\histogram.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\column\range-column.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\column\stacked-column-100.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\column\stacked-column-with-line.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\column\stacked-column.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\dashboards\dark\assets\scripts.js" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\dashboards\dark\assets\styles.css" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\dashboards\dark\index.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\dashboards\material\assets\scripts.js" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\dashboards\material\assets\styles.css" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\dashboards\material\index.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\dashboards\modern\assets\data.js" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\dashboards\modern\assets\img\banana.png" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\dashboards\modern\assets\img\logo.png" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\dashboards\modern\assets\img\map.png" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\dashboards\modern\assets\img\tellius.png" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\dashboards\modern\assets\img\user.png" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\dashboards\modern\assets\scripts.js" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\dashboards\modern\assets\styles.css" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\dashboards\modern\index.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\dashboards\realtime\assets\edit-on-codepen.png" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\dashboards\realtime\assets\scripts.js" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\dashboards\realtime\assets\styles.css" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\dashboards\realtime\index.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\funnel\funnel.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\funnel\pyramid.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\heatmap\basic.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\heatmap\color-range.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\heatmap\image-fill.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\heatmap\multiple-color-scales-flipped.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\heatmap\multiple-color.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\heatmap\rounded.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\line\basic-line.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\line\brush-charts.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\line\dashed-line.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\line\gradient-line.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\line\line-with-annotations.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\line\line-with-data-labels.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\line\line-with-image.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\line\line-with-missing-data.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\line\logarithmic-line.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\line\realtime.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\line\stepline.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\line\syncing-charts.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\line\zoomable-timeseries.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\misc\annotations-example.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\misc\axios.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\misc\custom-legend.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\misc\init-from-attrs.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\misc\jquery.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\misc\minMaxPoints.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\misc\range-annotations-inverted-axis-example.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\mixed\line-area.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\mixed\line-column-area.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\mixed\line-column.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\mixed\line-scatter.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\mixed\multiple-yaxes.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\pie\donut-update.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\pie\donut-with-pattern.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\pie\gradient-donut.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\pie\monochrome-pie.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\pie\pie-with-image.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\pie\semi-donut.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\pie\simple-donut.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\pie\simple-pie.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\polarArea\basic-polar-area.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\polarArea\polar-area-monochrome.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\radar\basic-radar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\radar\radar-multiple-series.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\radar\radar-with-polygon-fill.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\radialBar\circle-chart-multiple.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\radialBar\circle-chart-with-image.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\radialBar\circle-chart.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\radialBar\circle-custom-angle.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\radialBar\circle-gradient.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\radialBar\semi-circle-chart.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\radialBar\stroked-gauge.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\rangeArea\basic-range-area.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\rangeArea\range-area-line-combo.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\scatter\scatter-basic.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\scatter\scatter-datetime.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\scatter\scatter-images.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\sparklines\sparklines.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\timelines\advanced.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\timelines\controlling-colors.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\timelines\dumbbell-chart-horizontal.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\timelines\multi-series-group-rows.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\timelines\multi-series.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\timelines\simple.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\treemap\basic.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\treemap\color-scale.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\treemap\distributed.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vanilla-js\treemap\multi-dimensional.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\area\area-datetime.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\area\area-github-style.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\area\area-spline.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\area\area-with-missing-data.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\area\area-with-negative.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\area\basic-area.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\area\stacked-area.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\area\timeseries-with-irregular-data.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\bar\bar-with-custom-data-labels.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\bar\bar-with-images.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\bar\bar-with-markers.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\bar\bar-with-negative.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\bar\basic-bar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\bar\grouped-bar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\bar\grouped-stacked-bar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\bar\patterned-bar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\bar\reversed-bar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\bar\stacked-bar-100.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\bar\stacked-bar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\boxPlot\basic.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\boxPlot\boxplot-scatter.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\boxPlot\horizontal-boxplot.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\bubble\3d-bubble.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\bubble\simple-bubble.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\candlestick\basic.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\candlestick\candlestick-bar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\candlestick\candlestick-category.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\candlestick\candlestick-line.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\column\basic-column.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\column\column-with-data-labels.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\column\column-with-group-label.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\column\column-with-markers.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\column\column-with-negative.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\column\column-with-rotated-data-labels.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\column\column-with-rotated-labels.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\column\data-color.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\column\distributed-columns.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\column\dumbbell-chart.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\column\dynamic-loaded-chart.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\column\grouped-stacked-column.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\column\range-column.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\column\stacked-column-100.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\column\stacked-column-with-line.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\column\stacked-column.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\funnel\funnel.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\funnel\pyramid.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\heatmap\basic.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\heatmap\color-range.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\heatmap\image-fill.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\heatmap\multiple-color-scales-flipped.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\heatmap\multiple-color.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\heatmap\rounded.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\line\basic-line.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\line\brush-charts.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\line\dashed-line.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\line\gradient-line.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\line\line-with-annotations.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\line\line-with-data-labels.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\line\line-with-image.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\line\line-with-missing-data.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\line\logarithmic-line.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\line\realtime.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\line\stepline.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\line\syncing-charts.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\line\zoomable-timeseries.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\misc\annotations-example.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\misc\minMaxPoints.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\misc\range-annotations-inverted-axis-example.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\mixed\line-area.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\mixed\line-column-area.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\mixed\line-column.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\mixed\line-scatter.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\mixed\multiple-yaxes.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\pie\donut-update.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\pie\donut-with-pattern.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\pie\gradient-donut.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\pie\monochrome-pie.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\pie\pie-with-image.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\pie\semi-donut.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\pie\simple-donut.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\pie\simple-pie.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\polarArea\basic-polar-area.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\polarArea\polar-area-monochrome.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\radar\basic-radar.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\radar\radar-multiple-series.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\radar\radar-with-polygon-fill.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\radialBar\circle-chart-multiple.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\radialBar\circle-chart-with-image.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\radialBar\circle-chart.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\radialBar\circle-custom-angle.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\radialBar\circle-gradient.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\radialBar\semi-circle-chart.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\radialBar\stroked-gauge.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\rangeArea\basic-range-area.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\rangeArea\range-area-line-combo.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\scatter\scatter-basic.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\scatter\scatter-datetime.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\scatter\scatter-images.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\sparklines\sparklines.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\timelines\advanced.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\timelines\controlling-colors.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\timelines\dumbbell-chart-horizontal.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\timelines\multi-series-group-rows.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\timelines\multi-series.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\timelines\simple.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\treemap\basic.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\treemap\color-scale.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\treemap\distributed.html" />
+    <Content Include="Asset\Lib\apexchart\samples\vue\treemap\multi-dimensional.html" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-grid.rtl.css" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-grid.rtl.min.css" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-reboot.rtl.css" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-utilities.css" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-utilities.min.css" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-utilities.rtl.css" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap.css" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap.min.css" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap.rtl.css" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap.rtl.min.css" />
+    <Content Include="Asset\Lib\Bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="Asset\Lib\Bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Asset\Lib\Bootstrap\js\bootstrap.esm.js" />
+    <Content Include="Asset\Lib\Bootstrap\js\bootstrap.esm.min.js" />
+    <Content Include="Asset\Lib\Bootstrap\js\bootstrap.js" />
+    <Content Include="Asset\Lib\Bootstrap\js\bootstrap.min.js" />
+    <Content Include="Asset\Lib\Jquery\Jquery3_7_1.min.js" />
+    <Content Include="Global.asax" />
+    <Content Include="Models\DataModelCinema.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DataModelCinema.edmx</DependentUpon>
+      <LastGenOutput>DataModelCinema.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DataModelCinema.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DataModelCinema.edmx</DependentUpon>
+      <LastGenOutput>DataModelCinema.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\PrivateSite\Controllers\AccountManagementController.cs" />
+    <Compile Include="Areas\PrivateSite\Controllers\ActorAndDirectorController.cs" />
+    <Compile Include="Areas\PrivateSite\Controllers\ArticleController.cs" />
+    <Compile Include="Areas\PrivateSite\Controllers\CategoryMovieController.cs" />
+    <Compile Include="Areas\PrivateSite\Controllers\CountryController.cs" />
+    <Compile Include="Areas\PrivateSite\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\PrivateSite\Controllers\InformationAccountController.cs" />
+    <Compile Include="Areas\PrivateSite\Controllers\MovieController.cs" />
+    <Compile Include="Areas\PrivateSite\Controllers\MovieTheaterController.cs" />
+    <Compile Include="Areas\PrivateSite\Controllers\ShowTimeController.cs" />
+    <Compile Include="Areas\PrivateSite\PrivateSiteAreaRegistration.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FilmController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MovieDetailController.cs" />
+    <Compile Include="Controllers\NewDetailController.cs" />
+    <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\UserProfileController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BaiViet.cs">
+      <DependentUpon>DataModelCinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BinhLuan.cs">
+      <DependentUpon>DataModelCinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Common.cs" />
+    <Compile Include="Models\CustomAuthentication.cs" />
+    <Compile Include="Models\CustomAuthorize.cs" />
+    <Compile Include="Models\DanhGiaPhim.cs">
+      <DependentUpon>DataModelCinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModelCinema.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataModelCinema.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModelCinema.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataModelCinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModelCinema.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataModelCinema.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DiaChiIPDangNhap.cs">
+      <DependentUpon>DataModelCinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DienVienDaoDien.cs">
+      <DependentUpon>DataModelCinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DonDatVe.cs">
+      <DependentUpon>DataModelCinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HashPassword.cs" />
+    <Compile Include="Models\LichChieu.cs">
+      <DependentUpon>DataModelCinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MaKichHoatTaiKhoan.cs">
+      <DependentUpon>DataModelCinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NhomTaiKhoan.cs">
+      <DependentUpon>DataModelCinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Phim.cs">
+      <DependentUpon>DataModelCinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PhuongThucThanhToan.cs">
+      <DependentUpon>DataModelCinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuocGia.cs">
+      <DependentUpon>DataModelCinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RapPhim.cs">
+      <DependentUpon>DataModelCinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TaiKhoan.cs">
+      <DependentUpon>DataModelCinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TheLoai.cs">
+      <DependentUpon>DataModelCinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TrangThaiDon.cs">
+      <DependentUpon>DataModelCinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TrangThaiTaikhoan.cs">
+      <DependentUpon>DataModelCinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VaiTroPhim.cs">
+      <DependentUpon>DataModelCinema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ActorAndDirectorVM.cs" />
+    <Compile Include="ViewModel\ArticleVM.cs" />
+    <Compile Include="ViewModel\MovieVM.cs" />
+    <Compile Include="ViewModel\RegisterVM.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="Areas\PrivateSite\Views\web.config" />
+    <Content Include="Areas\PrivateSite\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\PrivateSite\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\PrivateSite\Views\Dashboard\Index.cshtml" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-grid.rtl.css.map" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-utilities.css.map" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-utilities.min.css.map" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap.css.map" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap.rtl.css.map" />
+    <Content Include="Asset\Lib\Bootstrap\css\bootstrap.rtl.min.css.map" />
+    <Content Include="Asset\Lib\Bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="Asset\Lib\Bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Asset\Lib\Bootstrap\js\bootstrap.esm.js.map" />
+    <Content Include="Asset\Lib\Bootstrap\js\bootstrap.esm.min.js.map" />
+    <Content Include="Asset\Lib\Bootstrap\js\bootstrap.js.map" />
+    <Content Include="Asset\Lib\Bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="Asset\Css\icons\tabler-icons\fonts\tabler-icons.eot" />
+    <Content Include="Asset\Css\icons\tabler-icons\fonts\tabler-icons.ttf" />
+    <Content Include="Asset\Css\icons\tabler-icons\fonts\tabler-icons.woff" />
+    <Content Include="Asset\Css\icons\tabler-icons\fonts\tabler-icons.woff2" />
+    <Content Include="Asset\Lib\apexchart\apexcharts-bundle.zip" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\ar.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\ca.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\cs.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\da.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\de.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\el.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\en.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\es.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\et.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\fa.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\fi.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\fr.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\he.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\hi.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\hr.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\hu.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\hy.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\id.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\it.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\ja.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\ka.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\ko.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\lt.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\lv.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\nb.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\nl.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\pl.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\pt-br.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\pt.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\rs.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\ru.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\se.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\sk.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\sl.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\sq.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\th.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\tr.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\ua.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\zh-cn.json" />
+    <Content Include="Asset\Lib\apexchart\dist\locales\zh-tw.json" />
+    <Content Include="Areas\PrivateSite\Views\CategoryMovie\Index.cshtml" />
+    <Content Include="Areas\PrivateSite\Views\Country\Index.cshtml" />
+    <Content Include="Areas\PrivateSite\Views\AccountManagement\ListOfAccount.cshtml" />
+    <Content Include="Areas\PrivateSite\Views\InformationAccount\Index.cshtml" />
+    <Content Include="Areas\PrivateSite\Views\Movie\AddMovie.cshtml" />
+    <Content Include="Areas\PrivateSite\Views\MovieTheater\Index.cshtml" />
+    <Content Include="Areas\PrivateSite\Views\Article\ArticleList.cshtml" />
+    <Content Include="Areas\PrivateSite\Views\Article\Insert.cshtml" />
+    <Content Include="Areas\PrivateSite\Views\Movie\Insert.cshtml" />
+    <Content Include="Areas\PrivateSite\Views\ActorAndDirector\Index.cshtml" />
+    <Content Include="Areas\PrivateSite\Views\AccountManagement\DetailView.cshtml" />
+    <Content Include="Areas\PrivateSite\Views\ShowTime\Index.cshtml" />
+    <Content Include="Areas\PrivateSite\Views\Movie\Index.cshtml" />
+    <EntityDeploy Include="Models\DataModelCinema.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DataModelCinema.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DataModelCinema.edmx.diagram">
+      <DependentUpon>DataModelCinema.edmx</DependentUpon>
+    </Content>
+    <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ActivateAccount.cshtml" />
+    <Content Include="Views\Account\Error.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\DenielAccess.cshtml" />
+    <Content Include="Views\UserProfile\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\UserProfile\LoginHistory.cshtml" />
+    <Content Include="Views\UserProfile\TicketHistory.cshtml" />
+    <Content Include="Views\Posts\Index.cshtml" />
+    <Content Include="Views\Film\Index.cshtml" />
+    <Content Include="Views\Film\PhimDangChieu.cshtml" />
+    <Content Include="Views\Film\PhimSapChieu.cshtml" />
+    <Content Include="Views\MovieDetail\Index.cshtml" />
+    <Content Include="Views\NewDetail\Index.cshtml" />
+    <Content Include="Views\NewDetail\AllNew.cshtml" />
+    <Content Include="Views\UserProfile\TicketHistoryDetail.cshtml" />
+    <Content Include="Views\UserProfile\ChangePassword.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\PrivateSite\Data\" />
+    <Folder Include="Asset\image\article\" />
+    <Folder Include="Asset\image\movie\" />
+    <Folder Include="Views\Search\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>65222</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:65222/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

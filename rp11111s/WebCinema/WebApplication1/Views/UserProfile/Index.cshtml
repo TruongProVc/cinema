@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="hero common-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1> THÔNG TIN NGƯỜI DÙNG</h1>
+                    <ul class="breadcumb">
+                        <li class="active"><a href="#">TRANG CHỦ</a></li>
+                        <li> <span class="ion-ios-arrow-right"></span> THÔNG TIN NGƯỜI DÙNG</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="buster-light">
+    <div class="page-single">
+        <div class="container">
+            <div class="row ipad-width">
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="user-information">
+                        <div class="user-img">
+                            <a href="#"><img src="images/uploads/user-img.png" alt=""><br></a>
+                        </div>
+                        <div class="user-fav">
+                            <p>Chi tiết tài khoản</p>
+                            <ul>
+                                <li class="active"><a href="@Url.Action("Index","UserProfile")">thông tin</a></li>
+                                <li class="active"><a href="@Url.Action("LoginHistory","UserProfile")">lịch sử đăng nhập</a></li>
+                                <li class="active"><a href="@Url.Action("TicketHistory","UserProfile")">lịch sử mua vé</a></li>
+
+                            </ul>
+                        </div>
+                        <div class="user-fav">
+                            <p>Khác</p>
+                            <ul>
+                                <li><a href="@Url.Action("ChangePassword","UserProfile")">Thay đổi mật khẩu </a></li>
+                                <li><a href="#">Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-12 col-xs-12">
+                    <div class="form-style-1 user-pro" action="#">
+                        <form action="#" class="user">
+                            <h4>Thông</h4>
+                            <div class="row">
+                                <div class="col-md-6 form-it">
+                                    <label>ID người dùng</label>
+                                    <input type="text" placeholder="edwardkennedy">
+                                </div>
+                                <div class="col-md-6 form-it">
+                                    <label>Email </label>
+                                    <input type="text" placeholder="edward@kennedy.com">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-it">
+                                    <label>Họ </label>
+                                    <input type="text" placeholder="Edward ">
+                                </div>
+                                <div class="col-md-6 form-it">
+                                    <label>Tên</label>
+                                    <input type="text" placeholder="Kennedy">
+                                </div>
+                                <div class="col-md-6 form-it">
+                                    <label>Số điện thoại</label>
+                                    <input type="text" placeholder="Kennedy">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <input class="submit" type="submit" value="Lưu">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

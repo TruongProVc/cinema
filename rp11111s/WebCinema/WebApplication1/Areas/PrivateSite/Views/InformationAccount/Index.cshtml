@@ -1,0 +1,300 @@
+﻿@using WebApplication1.Models;
+@{
+    var account = Session["InformationAccount"] as TaiKhoan;
+    //var IPList = ViewData["IPAddressList"] as List<DiaChiIPDangNhaps>;
+    ViewBag.Title = "Index";
+}
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Thông tin tài khoản</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href=''>Dashboard</a></li>
+                        <li class="breadcrumb-item active">Thông tin</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                                <img class="profile-user-img img-fluid img-circle"
+                                     src="~/Asset/image/profile/user-1.jpg"
+                                     alt="User profile picture">
+                            </div>
+                            <h3 class="profile-username text-center">@account.ho @account.ten</h3>
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <li class="list-group-item">
+                                    <b>Nhóm tài khoản: </b><a class="float-right text-decoration-none c-black">@account.NhomTaiKhoan.tenNhom</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-header p-2">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Thông tin</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Đổi mật khẩu</button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <div class="form-group row mb-3">
+                                        <label class="col-sm-2 col-form-label">Email</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" value="@account.email" disabled>
+                                        </div>
+                                    </div>
+                                    <form id="form_information" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <div class="form-group row mb-3">
+                                            <label class="col-sm-2 col-form-label">Số điện thoại</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="Mobile" name="mobile" value="@account.soDienThoai">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label class="col-sm-2 col-form-label">Họ</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="LastName" name="lastName" value="@account.ho">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label class="col-sm-2 col-form-label">Tên</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="FirstName" name="firstName" value="@account.ten">
+                                            </div>
+                                        </div>
+                                        @*<div class="form-group row mb-3">
+                                            <label class="col-sm-2 col-form-label">Trạng thái tài khoản</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" value="@account.TrangThaiTaikhoan.tenTrangThaiTK" disabled>
+                                            </div>
+                                        </div>*@
+                                        <button type="submit" class="btn btn-success">Lưu</button>
+                                    </form>
+                                </div>
+                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <form id="form_changePW" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <div class="form-group row mb-3">
+                                            <label for="currentPassword" class="col-sm-2 col-form-label">Mật khẩu cũ</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="currentPassword">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label for="newPassword" class="col-sm-2 col-form-label">Mật khẩu mới</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="newPassword">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label for="confirmNewPassword" class="col-sm-2 col-form-label">Nhập lại mật khẩu mới</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="confirmNewPassword">
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-success">Lưu</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <h4 style="color: black;">Thông Tin đăng nhập</h4>
+                <div class="table-responsive">
+                    <table class="table table-post text-nowrap mb-0 align-middle">
+                        <thead class="text-dark fs-4">
+                            <tr>
+                                <th class="">
+                                    <h6 class="fw-600 mb-0">IP</h6>
+                                </th>
+                                <th class="">
+                                    <h6 class="fw-600 mb-0">Ngày tạo </h6>
+                                </th>
+                                <th class="">
+                                    <h6 class="fw-600 mb-0">Trình duyệt</h6>
+                                </th>
+                                <th class="">
+                                    <h6 class="fw-600 mb-0">Thiết bị</h6>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody_IP"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section scriptProfileAccount{
+    <script>
+        var elementTableBody = $('#tbody_IP');
+        var ms = $('#messageNotFind');
+
+        $(document).ready(function () {
+            LoadData();
+            ChangeInformation();
+            ChangePassword();
+        });
+        function LoadData() {
+            $.ajax({
+                url: '@Url.Action("LoadData", "InformationAccount")',
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.status) {
+                        elementTableBody.empty();
+                        $.each(response.Data, function (index, address) {
+                            elementTableBody.append(`<tr>
+                                        <td><h6 class="fw-600 mb-0">${address.ip}</h6></td>
+                                        <td><h6 class="fw-600 mb-1">${getDateEpoch(address.thoiGian)}</h6></td>
+                                        <td><h6 class="fw-600 mb-1">${address.trinhDuyet}</h6></td>
+                                        <td><h6 class="fw-600 mb-1">${address.thietBi}</h6></td>
+                                    </tr>`);
+                        });
+                    } else {
+                        alert(response.message)
+                    }
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        }
+        function ChangePassword() {
+            $('#form_changePW').submit(function (e) {
+                e.preventDefault();
+                const inputElementCurrentPW = document.getElementById('currentPassword');
+                const inputElementNewPW = document.getElementById('newPassword');
+                const inputElementConfirmPW = document.getElementById('confirmNewPassword');
+                var token = $('input[name="__RequestVerificationToken"]').val();
+                if (inputElementConfirmPW.value === inputElementNewPW.value) {
+                    $.ajax({
+                        url: '@Url.Action("ChangePassword", "InformationAccount")',
+                        type: 'Post',
+                        data: { passwordCurrent: inputElementCurrentPW.value, newPassword: inputElementNewPW.value, __RequestVerificationToken:token },
+                        success: function (response) {
+                            if (response.status) {
+                                Swal.fire({
+                                    position: "center-center",
+                                    icon: "success",
+                                    title: response.message,
+                                    showConfirmButton: true,
+                                    timer: 1500
+                                }).then((result) => {
+                                    if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                                        location.reload(true);
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    position: "center-center",
+                                    icon: "error",
+                                    title: response.message,
+                                    showConfirmButton: true,
+                                    timer: 1500
+                                }).then((result) => {
+                                    if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                                        location.reload(true);
+                                    }
+                                });
+                            }
+                        },
+                        error: function (error) {
+                            console.error(error);
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        position: "center-center",
+                        icon: "error",
+                        title: "Mật khẩu xác nhận không đúng",
+                        showConfirmButton: true,
+                        timer: 1500
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                            location.reload(true);
+                        }
+                    });
+                }
+            });
+        }
+        function ChangeInformation() {
+            $('#form_information').submit(function (e) {
+                e.preventDefault();
+
+                const firstName = document.getElementById('FirstName');
+                const lastName = document.getElementById('LastName');
+                const mobile = document.getElementById('Mobile');
+
+                var v1 = firstName.value;
+                var v2 = lastName.value;
+                var v3 = mobile.value;
+                console.log(v1);
+                console.log(v2);
+                console.log(v3);
+
+
+                var token = $('input[name="__RequestVerificationToken"]').val();
+                $.ajax({
+                    url: '@Url.Action("Edit", "InformationAccount")',
+                    type: 'Post',
+                    data: { firstName: v1, lastName: v2, mobile: v3, __RequestVerificationToken: token },
+                    success: function (response) {
+                        if (response.status) {
+                            Swal.fire({
+                                position: "center-center",
+                                icon: "success",
+                                title: response.message,
+                                showConfirmButton: true,
+                                timer: 1500
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                                    location.reload(true);
+                                }
+                            });
+                        } else {
+                            Swal.fire({
+                                position: "center-center",
+                                icon: "error",
+                                title: response.message,
+                                showConfirmButton: true,
+                                timer: 1500
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                                    location.reload(true);
+                                }
+                            });
+                        }
+                    },
+                    error: function (error) {
+                        alert("Lỗi");
+                        console.log(error)
+                    }
+                });
+            });
+        }
+    </script>
+}

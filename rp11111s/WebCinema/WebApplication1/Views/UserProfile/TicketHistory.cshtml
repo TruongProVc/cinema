@@ -1,0 +1,188 @@
+﻿
+@{
+    ViewBag.Title = "TicketHistory";
+}
+<style>
+    .input-box {
+        position: relative;
+        width: 100%;
+        max-width: 60px;
+        height: 55px;
+        margin: 0 50px;
+        background-color: #f5f5f5;
+        border-radius: 6px;
+        transition: all 0.5s ease-in-out;
+        float: right;
+    }
+
+        .input-box.open {
+            max-width: 350px;
+        }
+
+        .input-box input {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            font-size: 16px;
+            font-weight: 400;
+            color: #333;
+            padding: 0 15px;
+            border: none;
+            border-radius: 1px;
+            outline: none;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .input-box.open input {
+            padding: 0 15px 0 65px;
+        }
+
+        .input-box .search {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 60px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #e4eaf0;
+            /* border-radius: 6px; */
+            cursor: pointer;
+        }
+
+    .search .search-icon {
+        font-size: 30px;
+        color: #1c1c1c;
+    }
+
+    .input-box .close-icon {
+        position: absolute;
+        top: 50%;
+        right: -45px;
+        font-size: 30px;
+        color: #1c1c1c;
+        padding: 5px;
+        transform: translateY(-50%);
+        transition: all 0.5s ease-in-out;
+        cursor: pointer;
+        pointer-events: none;
+        opacity: 0;
+    }
+
+    .input-box.open .close-icon {
+        transform: translateY(-50%) rotate(180deg);
+        pointer-events: auto;
+        opacity: 1;
+    }
+</style>
+
+<div class="hero common-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1> LỊCH SỬ ĐĂNG NHẬP</h1>
+                    <ul class="breadcumb">
+                        <li class="active"><a href="#">TRANG CHỦ</a></li>
+                        <li> <span class="ion-ios-arrow-right"></span> LỊCH SỬ ĐĂNG NHẬP</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="buster-light">
+    <div class="page-single">
+        <div class="container">
+            <div class="row ipad-width">
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="user-information">
+                        <div class="user-img">
+                            <a href="#"><img src="images/uploads/user-img.png" alt=""><br></a>
+                        </div>
+                        <div class="user-fav">
+                            <p>Chi tiết tài khoản</p>
+                            <ul>
+                                <li class="active"><a href="userprofile_light.html">thông tin</a></li>
+                                <li class="active"><a href="userhistory_light.html">lịch sử đăng nhập</a></li>
+                                <li class="active"><a href="userhistoryticket_light.html">lịch sử mua vé</a></li>
+
+                            </ul>
+                        </div>
+                        <div class="user-fav">
+                            <p>Khác</p>
+                            <ul>
+                                <li><a href="changepass.html">Thay đổi mật khẩu </a></li>
+                                <li><a href="#">Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="form-style-1 user-pro" action="#">
+                        <form action="#" class="user">
+                            <div class="input-box">
+                                <input type="text" placeholder="Search..." />
+                                <span class="search">
+                                    <i class="uil uil-search search-icon"></i>
+                                </span>
+                                <i class="uil uil-times close-icon"></i>
+                            </div>
+                            <div>
+                                <h4 style="color:black; font-size: 20px;">lịch sử đặt chổ</h4>
+                                <div class="row">
+                                    <div class="col-md-6 form-it">
+                                        <div class=img-ticket>
+                                            <!-- ảnh vé xem phim -->
+                                            <a href="detailticket_light.html"> <img src="images/uploads/z5384775704191_afe8e24495759a9d068061b836663c47.jpg" alt="html"></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-it">
+                                        <div class="iform-ticket">
+                                            <!-- thông tin vé xem phim -->
+                                            <h5 style="font-size: 30px;">Kung Fu Panda 4</h5>
+                                            <p>TITAIN CINEMA</p>
+                                            <p><b>20:15-T7</b>,09/09</p>
+                                            <button><a href="@Url.Action("TicketHistoryDetail","UserProfile")">Xem thêm</a></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-6 form-it">
+                                        <div class=img-ticket>
+                                            <!-- ảnh vé xem phim -->
+                                            <a href="detailticket_light.html"> <img src="images/uploads/z5384775704191_afe8e24495759a9d068061b836663c47.jpg" alt="html"></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-it">
+                                        <div class="iform-ticket">
+                                            <!-- thông tin vé xem phim -->
+                                            <h5 style="font-size: 30px;">Kung Fu Panda 4</h5>
+                                            <p>TITAIN CINEMA</p>
+                                            <p><b>20:15-T7</b>,09/09</p>
+                                            <button><a href="detailticket_light.html">Xem thêm</a></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class="pagination">
+                                <li class="icon-prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">...</a></li>
+                                <li><a href="#">21</a></li>
+                                <li><a href="#">22</a></li>
+                                <li class="icon-next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
+                            </ul>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

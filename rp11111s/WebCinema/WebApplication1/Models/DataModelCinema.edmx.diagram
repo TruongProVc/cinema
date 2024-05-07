@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f429b4dddef544d69e5498d243f3f4f9" Name="Diagram1">
+        <EntityTypeShape EntityType="WebsiteCinemaModel.BaiViet" Width="1.5" PointX="7.5" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteCinemaModel.BinhLuan" Width="1.5" PointX="5.25" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteCinemaModel.DanhGiaPhim" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteCinemaModel.DiaChiIPDangNhap" Width="1.5" PointX="7.5" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteCinemaModel.DienVienDaoDien" Width="1.5" PointX="6" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteCinemaModel.DonDatVe" Width="1.5" PointX="10.5" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteCinemaModel.LichChieu" Width="1.5" PointX="8.25" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteCinemaModel.MaKichHoatTaiKhoan" Width="1.5" PointX="7.5" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteCinemaModel.NhomTaiKhoan" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteCinemaModel.Phim" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteCinemaModel.PhuongThucThanhToan" Width="1.5" PointX="8.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteCinemaModel.QuocGia" Width="1.5" PointX="0.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteCinemaModel.RapPhim" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteCinemaModel.TaiKhoan" Width="1.5" PointX="5.25" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteCinemaModel.TheLoai" Width="1.5" PointX="5.25" PointY="33.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteCinemaModel.TrangThaiDon" Width="1.5" PointX="8.25" PointY="27" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteCinemaModel.TrangThaiTaikhoan" Width="1.5" PointX="3" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebsiteCinemaModel.VaiTroPhim" Width="1.5" PointX="8.25" PointY="9.375" IsExpanded="true" />
+        <AssociationConnector Association="WebsiteCinemaModel.fk_baiviet_taikhoan" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteCinemaModel.fk_binhluan_phim" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteCinemaModel.fk_binhluan_taikhoan" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteCinemaModel.fk_danhgiaphim_phim" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteCinemaModel.fk_danhgiaphim_taikhoan" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteCinemaModel.fk_ipdangnhap_taikhoan" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteCinemaModel.fk_vaitrophim_dienviendaodien" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteCinemaModel.fk_dondatve_lichchieu" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteCinemaModel.fk_dondatve_phuongthucthanhtoan" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteCinemaModel.fk_dondatve_taikhoan" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteCinemaModel.fk_dondatve_trangthaidon" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteCinemaModel.fk_lichchieu_phim" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteCinemaModel.fk_lichchieu_rapPhim" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteCinemaModel.fk_makichhoat_taikhoan" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteCinemaModel.fk_taikhoan_nhomtaikhoan" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteCinemaModel.fk_phim_quocgia" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteCinemaModel.fk_vaitrophim_phim" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteCinemaModel.fk_taikhoan_trangthaitaikhoang" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteCinemaModel.DanhSachYeuThich" ManuallyRouted="false" />
+        <AssociationConnector Association="WebsiteCinemaModel.TheLoaiPhim" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

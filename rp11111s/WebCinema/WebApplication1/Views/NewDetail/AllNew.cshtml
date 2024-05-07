@@ -1,0 +1,56 @@
+﻿@using WebApplication1.Models
+@{
+
+    ViewBag.Title = "AllNew";
+    List<BaiViet> bv = ViewData["dsbv"] as List<BaiViet>;
+
+}
+<div class="hero common-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>TIN TỨC</h1>
+                    <ul class="breadcumb">
+                        <li class="active"><a href="#">TRANG CHỦ</a></li>
+                        <li> <span class="ion-ios-arrow-right"></span> TẤT CẢ TIN TỨC</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-single">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                @foreach (var item in bv)
+                {
+                    <div class="blog-item-style-1 blog-item-style-3">
+                        <img src="@item.hinhDaiDien" alt="">
+                        <div class="blog-it-infor">
+                            <h3><a href="blogdetail_light.html">@item.tenBaiViet </a></h3>
+                            <span class="time">@item.ngayDang</span>
+                            <p>@item.noiDungTomTat</p>
+                        </div>
+                    </div>
+                }
+
+
+                <ul class="pagination">
+                    <li class="icon-prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">...</a></li>
+                    <li><a href="#">21</a></li>
+                    <li><a href="#">22</a></li>
+                    <li class="icon-next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+

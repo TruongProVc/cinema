@@ -1,0 +1,40 @@
+﻿@model WebApplication1.Models.BaiViet
+@{
+    ViewBag.Title = "Index";
+}
+<div class="hero common-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1> TIN TỨC</h1>
+                    <ul class="breadcumb">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li> <span class="ion-ios-arrow-right"></span> BÀI VIẾT</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-single">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="blog-detail-ct">
+                    <h1>@Model.tenBaiViet</h1>
+                    <img src="@Model.hinhDaiDien" alt="" width="100%">
+                    <p>
+                        @Model.noiDung
+                    </p>
+
+
+                    <!-- share link -->
+                    <hr>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

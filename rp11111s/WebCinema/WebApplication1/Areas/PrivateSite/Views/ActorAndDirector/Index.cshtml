@@ -1,0 +1,318 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">Thêm diễn viên, đạo diễn</h5>
+            <div class="card">
+                <div class="card-body">
+                    <form id="form_ActorDirector" enctype="multipart/form-data">
+                        <input type="hidden" name="id" id="id"/>
+                        <div class="mb-3">
+                            <p class="c-green" id="alert_Edit" style="font-weight:bold;"></p>
+                            <label style="">Tên </label>
+                            <input type="text" class="form-control" name="name" id="name">
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-6">
+                                <label class="form-label">Ngày sinh</label>
+                                <input type="date" class="form-control" name="dateOfBirth" id="dateOfBirth"/>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label">Giới tính</label>
+                                <select class="form-control" name="gender" id="gender">
+                                    <option>Chọn giới tính</option>
+                                    <option value="true">Nam</option>
+                                    <option value="false">Nữ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3 ">
+                            <label for="exampleInputPassword1" class="form-label">Hình đại diện</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="avatar" name="imageAvatar">
+                            </div>
+                            <div id="imagePreviewSingle" min-height="120px" min-width="120px" class="m-auto"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-2">Lưu</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 d-flex align-items-stretch">
+                <div class="card w-100">
+                    <div class="card-body p-4">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <h5 class="card-title fw-600 mb-4">Danh sách bài viết</h5>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <input class="form-control" placeholder="Tìm kiếm ..." id="searchAD" />
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-post text-nowrap mb-0 align-middle">
+                                <thead class="text-dark fs-4">
+                                    <tr>
+                                        <th class="">
+                                            <h6 class="fw-600 mb-0">Id</h6>
+                                        </th>
+                                        <th class="">
+                                            <h6 class="fw-600 mb-0">Tên </h6>
+                                        </th>
+                                        <th class="">
+                                            <h6 class="fw-600 mb-0">Ngày sinh</h6>
+                                        </th>
+                                        <th class="">
+                                            <h6 class="fw-600 mb-0">Giới tính</h6>
+                                        </th>
+                                        <th class="">
+                                            <h6 class="fw-600 mb-0">Lệnh</h6>
+                                        </th>
+                                        <th class="">
+                                            <h6 class="fw-600 mb-0">Trạng thái</h6>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table_ActorDirector"></tbody>
+                            </table>
+                            <div id="messageNotFind" style="margin:auto;display:none; text-align:center;">Không tìm thấy</div>
+                        </div>
+                        <div id="loading" class=" m-auto  mt-4"></div>
+                    </div>
+                    <div class="card-tools p-5 pt-0 pb-0 m-auto" id="pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+@section scriptActorAndDirector{
+    <script>
+        var elementTable = $("#table_ActorDirector");
+        var ms = document.getElementById('messageNotFind');
+
+        $(document).ready(function () {
+            Insert();
+            LoadImage();
+            loadData("", null, 2);
+            $("#searchAD").on("keyup", function (event) {
+                var keyword = $('#searchAD').val();
+                loadData(keyword, null, 2);
+            });
+        });
+        function Insert() {
+            $('#form_ActorDirector').submit(function (e) {
+                e.preventDefault();
+                var data = new FormData((this));
+                var id = $('#id').val;
+                var img = $('#image').val;
+                console.log(img);
+                    $.ajax({
+                    url: '@Url.Action("Insert", "ActorAndDirector")',
+                    type: 'POST',
+                    processData: false,
+                    contentType: false,
+                    data: data, id:id,
+                    success: function (response) {
+                        if (response.status) {
+                            Swal.fire({
+                                position: "center-center",
+                                icon: "success",
+                                title: response.message,
+                                showConfirmButton: true,
+                                timer: 1500
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                                    location.reload(true);
+                                }
+                            });
+                        } else {
+                            Swal.fire({
+                                position: "center-center",
+                                icon: "error",
+                                title: response.message,
+                                showConfirmButton: true,
+                                timer: 1500
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                                    location.reload(true);
+                                }
+                            });
+                        }
+                    },
+                    error: function () {
+                        alert('Đã xảy ra lỗi khi thêm ');
+                    }
+                });
+            });
+        }
+        function loadData(keyword, page, pageSize) {
+            ShowLoading(true);
+            $.ajax({
+                url: '@Url.Action("LoadData", "ActorAndDirector")',
+                type: 'GET',
+                dataType: 'json',
+                data: { keyword: keyword, page: page, pageSize: pageSize },
+                success: function (response) {
+                    if (response.status) {
+                        ShowLoading(false);
+                        elementTable.empty();
+                        $.each(response.Data, function (index, AD) {
+                            elementTable.append(`<tr>
+                                        <td><h6 class="fw-600 mb-0">${AD.sttDienVienDaoDien}</h6></td>
+                                        <td><h6 class="fw-600 mb-1">${AD.tenDienVienDaoDien}</h6></td>
+                                        <td><h6 class="fw-600 mb-1">${getDate(AD.ngaySinh)}</h6></td>
+                                        <td><h6 class="fw-600 mb-1">${(AD.gioiTinh == true ? "Nam" : "Nữ")}</h6></td>
+                                        <td><button type="button" class="btn btn-primary" onclick="Edit(${AD.sttDienVienDaoDien})">Sửa</button>
+                                        <button type="button" class="btn ${AD.trangThai == true ? "btn-secondary" : "btn-success"}" onclick="Active(${AD.sttDienVienDaoDien})">${AD.trangThai == true ? "Ẩn" : "Hiện"}</button>
+                                        <button type="button" class="btn btn-danger m-1" onclick="Delete(${AD.sttDienVienDaoDien})">Xóa</button></td>
+                                        <td><div class="d-flex align-items-center gap-2"><span class="badge ${AD.trangThai == true ? "bg-success" : "bg-secondary"} rounded-3 fw-600">${AD.trangThai == true ? "hiển thị" : "ẩn"}</span></div></td>
+                                    </tr>`);
+                        });
+                        ms.style.display = "none"
+                        if ((keyword.length > 0) && (response.NumberPage == 0 && response.TotalItem == 0)) ms.style.display = "block"
+                        Pagination(keyword, response.CurrentPage, response.NumberPage, response.PageSize);
+                    } else {
+                        alert(response.message)
+                    }
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        }
+        function Delete(id) {
+                Swal.fire({
+                    title: "Bạn chắc chắn?",
+                    text: "Bạn sẽ không thể khôi phục khi đã xóa",
+                    icon: "warning",
+                    showCancelButton: true,
+                    cancelButtonColor: "#d33",
+                    cancelButtonText: "Đóng",
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: "Xóa"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '@Url.Action("Delete","ActorAndDirector")',
+                            type: 'POST',
+                            data: { id: id },
+                            success: function (response) {
+                                if (response.status) {
+                                    Swal.fire({
+                                        position: "center-center",
+                                        icon: "success",
+                                        title: response.message,
+                                        showConfirmButton: true,
+                                        timer: 1500
+                                    }).then((result) => {
+                                        if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                                            location.reload(true);
+                                        }
+                                    });
+                                } else {
+                                    console.log("Xóa không thành công.");
+                                }
+                            },
+                            error: function (error) {
+                                console.error(error);
+                            }
+                        });
+                    }
+                });
+            }
+        function Active(id) {
+                console.log(id);
+                $.ajax({
+                    url: '@Url.Action("Active", "ActorAndDirector")',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (response) {
+                        if (response.status) {
+                            Swal.fire({
+                                position: "center-center",
+                                icon: "success",
+                                title: response.message,
+                                showConfirmButton: true,
+                                timer: 1500
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                                    location.reload(true);
+                                }
+                            });
+                        } else {
+                            Swal.fire({
+                                position: "center-center",
+                                icon: "error",
+                                title: response.message,
+                                showConfirmButton: true,
+                                timer: 1500
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                                    location.reload(true);
+                                }
+                            });
+                        }
+                    },
+                    error: function (error) {
+                        console.error(error);
+                    }
+                });
+            }
+        function Edit(id) {
+            $.ajax({
+                url: '@Url.Action("Edit","ActorAndDirector")',
+                type: 'GET',
+                dataType: 'json',
+                data: { id: id },
+                success: function (response) {
+                    var alertText = document.getElementById('alert_Edit')
+                    alertText.innerText = `Đang sửa mã: ${response.data.sttDienVienDaoDien}`;
+                    $('#id').val(response.data.sttDienVienDaoDien);
+
+                    $('#name').val(response.data.tenDienVienDaoDien);
+
+                    $('#dateOfBirth').val(formatJsonDate(response.data.ngaySinh));
+
+                    var imagePreview = document.getElementById('imagePreviewSingle');
+                    var img = document.createElement('img');
+                    img.src = response.data.hinhDaiDien;
+                    img.style.maxWidth = '25%';
+                    imagePreview.innerHTML = '';
+                    imagePreview.appendChild(img);
+
+                    // Thêm t vào đây để xử lí cập nhật bên controller bởi nếu không thêm khi sửa thì modelstate.isvalid nó sẽ bằng false nên ít nhiều nó phải có ít dữ kích thước dữ liệu avatar trên 1
+                 /*   $('#avatar').val("t"); */
+
+                    var optionGender = document.getElementById('gender').options;
+                    optionGender[(response.data.gioiTinh == true ? 1 : 2)].selected = true;
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        }
+      
+        function LoadImage() {
+            document.getElementById('avatar').addEventListener('change', function () {
+                var file = this.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var imagePreview = document.getElementById('imagePreviewSingle');
+                        var img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.style.maxWidth = '25%';
+                        imagePreview.innerHTML = '';
+                        imagePreview.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+    </script>
+    }
+

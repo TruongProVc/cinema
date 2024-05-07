@@ -1,0 +1,122 @@
+﻿@using WebApplication1.Models;
+@{
+    TaiKhoan account = Session["InformationAccount"] as TaiKhoan;
+    ViewBag.Title = "Insert";
+}
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">Thêm bài viết</h5>
+            <div class="card">
+                <div class="card-body">
+                    <form id="insertArticle" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        <div class="mb-3">
+                            <label class="form-label">Tên bài viết</label>
+                            <input type="text" class="form-control" name="articleName" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nội dung tóm tắt</label>
+                            <textarea class="form-control" name="summaryContent"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nội dung Chính</label>
+                            <textarea class="form-control" name="content"></textarea>
+                        </div>
+                        <div class="mb-3 ">
+                            <label class="form-label">Hình bài viết</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="imgArticle" name="avatarArticle">
+                            </div>
+                            <div id="imagePreviewSingle" min-height="120px" min-width="120px" class="m-auto"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label class="form-label">Tài khoản đăng</label>
+                                <input class="form-control" type="text" value="@account.email" disabled />
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">Thời gian đăng</label>
+                                <input type="text" class="form-control" value="@DateTime.Now" disabled>
+                            </div>
+                        </div>
+                        <button type="submit" id="btnSubmit" class="btn btn-primary mt-2">Thêm bài viết</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scriptArticle{
+<script>
+    $(document).ready(function () {
+        InsertArticle();
+        LoadImage();
+    });
+    function InsertArticle() {
+         $('#insertArticle').submit(function (e) {
+             e.preventDefault();
+             var data = new FormData((this));
+                $.ajax({
+                url: '@Url.Action("Insert", "Article")',
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (response) {
+                    if (response.status) {
+                        Swal.fire({
+                            position: "center-center",
+                            icon: "success",
+                            title: response.message,
+                            showConfirmButton: true,
+                            timer: 1500
+                        }).then((result) => {
+                            if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                                location.reload(true);
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            position: "center-center",
+                            icon: "error",
+                            title: response.message,
+                            showConfirmButton: true,
+                            timer: 1500
+                        }).then((result) => {
+                            if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                                location.reload(true);
+                            }
+                        });
+                    }
+                },
+                error: function () {
+                    alert('Đã xảy ra lỗi khi thêm bài viết');
+                }
+            });
+        });
+    }
+    function LoadImage() {
+        document.getElementById('imgArticle').addEventListener('change', function () {
+            var file = this.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var imagePreview = document.getElementById('imagePreviewSingle');
+                    var img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.maxWidth = '25%';
+                    imagePreview.innerHTML = '';
+                    imagePreview.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+</script>    
+    
+    
+}
+

@@ -1,0 +1,188 @@
+﻿@model WebApplication1.Models.Phim
+@using WebApplication1.Models
+@{
+    ViewBag.Title = "Index";
+    List<BinhLuan> bl = ViewData["dsbl"] as List<BinhLuan>;
+}
+<div class="buster-light">
+    <div class="hero mv-single-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- <h1> movie listing - list</h1>
+                    <ul class="breadcumb">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li> <span class="ion-ios-arrow-right"></span> movie listing</li>
+                    </ul> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-single movie-single movie_single">
+        <div class="container">
+            <div class="row ipad-width2">
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="movie-img sticky-sb">
+                        <img src="@Model.hinhDaiDien" alt="">
+                        <div class="movie-btn">
+                            <div class="btn-transform transform-vertical red">
+                                <div><a href="#" class="item item-1 redbtn"> <i class="ion-play"></i> XEM TRAILER</a></div>
+                                <div><a href="https://www.youtube.com/embed/o-0hcF97wy0" class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a></div>
+                            </div>
+                            <div class="btn-transform transform-vertical">
+                                <div><a href="#" class="item item-1 yellowbtn"> <i class="ion-card"></i> MUA VÉ</a></div>
+                                <div><a href="#" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                    <div class="movie-single-ct main-content">
+                        <h1 class="bd-hd">@Model.tenPhim <span>@Model.namSanXuat</span></h1>
+                        <div class="social-btn">
+                            <div class="hover-bnt">
+
+                            </div>
+                        </div>
+                        <div class="movie-rate">
+                            <div class="rate">
+                                <i class="ion-android-star"></i>
+                                <p>
+                                    <span>8.1</span> /10<br>
+                                </p>
+                            </div>
+                            <div class="rate-star">
+                                <p>Rate This Movie:  </p>
+                                <i class="ion-ios-star"></i>
+                                <i class="ion-ios-star"></i>
+                                <i class="ion-ios-star"></i>
+                                <i class="ion-ios-star"></i>
+                                <i class="ion-ios-star"></i>
+                                <i class="ion-ios-star"></i>
+                                <i class="ion-ios-star"></i>
+                                <i class="ion-ios-star"></i>
+                                <i class="ion-ios-star-outline"></i>
+                            </div>
+                        </div>
+                        <div class="movie-tabs">
+                            <div class="tabs">
+                                <ul class="tab-links tabs-mv">
+                                    <li class="active"><a href="#overview">Giới thiệu</a></li>
+                                    @*<li><a href="#reviews"> Nhận xét</a></li>*@
+                                </ul>
+                                <div class="tab-content">
+                                    <div id="overview" class="tab active">
+                                        <div class="row">
+                                            <div class="col-md- col-sm-12 col-xs-12">
+                                                <div class="title-hd-sm">
+                                                    <h4>Tổng quan phim</h4>
+                                                </div>
+                                                <!-- movie user review -->
+                                                <div class="mv-user-review-item">
+                                                    <h3>Tóm tắt bộ phim</h3>
+                                                    <div class="no-star">
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star last"></i>
+                                                    </div>
+
+                                                    <p>@Model.gioiThieu</p>
+                                                </div>
+                                                <hr>
+
+                                                <div class="row">
+                                                    <div class="rv-hd">
+                                                        <div class="div">
+                                                            <div class="container">
+                                                                <div class="col-md-9 col-xs-12">
+                                                                    <div class="blog-detail-ct">
+                                                                        <div class="comment-form">
+                                                                            <h4>ĐỂ LẠI BÌNH LUẬN</h4>
+                                                                            @using (Html.BeginForm("Create", "MovieDetail", FormMethod.Post))
+                                                                            {
+                                                                                @Html.AntiForgeryToken()
+                                                                                <div class="row">
+                                                                                    <div class="col-md-10">
+                                                                                        <textarea name="noiDung1" placeholder="Nhập bình luận của bạn"></textarea>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <input type="hidden" name="idPhim" value="@Model.idPhim" />
+
+                                                                                <div class="row">
+                                                                                    <div class="col-md-10">
+                                                                                        <input type="submit" value="Gửi bình luận" class="submit" />
+                                                                                    </div>
+                                                                                </div>
+                                                                            }
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <h4>BÌNH LUẬN ĐƯỢC ĐĂNG:</h4>
+                                                @foreach (var item in bl)
+                                                {
+                                                    if (item.idPhim == Model.idPhim)
+                                                    {
+                                                        <div class="mv-user-review-item">
+                                                            <div class="user-infor">
+                                                                <img src="images/uploads/userava1.jpg" alt="">
+                                                                <div>
+                                                                    <div class="no-star">
+                                                                        @* Hiển thị sao nếu cần thiết *@
+                                                                    </div>
+                                                                    <p class="time" style="font-size:14px; color:red;">
+                                                                        NGÀY ĐĂNG VÀO LÚC :@item.ngayDang  BỞI ID TÀI KHOẢN :  <a href="#"> @item.idTaiKhoan</a>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <p>@item.noiDung</p>
+                                                        </div>
+                                                    }
+
+                                                }
+
+
+
+                                                <!-- Pagination -->
+                                                <ul class="pagination">
+                                                    <li class="icon-prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
+                                                    <li class="active"><a href="#">1</a></li>
+                                                    <li><a href="#">2</a></li>
+                                                    <li><a href="#">3</a></li>
+                                                    <li><a href="#">4</a></li>
+                                                    <li><a href="#">...</a></li>
+                                                    <li><a href="#">21</a></li>
+                                                    <li><a href="#">22</a></li>
+                                                    <li class="icon-next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div id="reviews" class="tab review">
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

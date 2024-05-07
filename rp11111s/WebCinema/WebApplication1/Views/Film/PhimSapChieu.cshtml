@@ -1,0 +1,62 @@
+﻿@using WebApplication1.Models
+@{
+    ViewBag.Title = "PhimSapChieu";
+    List<Phim> phim = ViewData["dsp"] as List<Phim>;
+}
+<div class="hero common-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>PHIM SẮP CHIẾU</h1>
+                    <ul class="breadcumb">
+                        <li class="active"><a href="homev2_light.html">TRANG CHỦ</a></li>
+                        <li> <span class="ion-ios-arrow-right"></span> PHIM SẮP CHIẾU</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-single">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="topbar-filter fw">
+                    <p>Phim đang chiếu</p>
+                </div>
+                <div class="flex-wrap-movielist mv-grid-fw">
+                    @foreach (var item in phim)
+                    {
+                        <div class="movie-item-style-2 movie-item-style-1">
+                            <img src="@item.hinhDaiDien" alt="">
+                            <div class="hvr-inner">
+                                <a href="@Url.Action("Index","MovieDetail" , new {id = item.idPhim })"> MUA TICKET </a>
+                            </div>
+                            <div class="mv-item-infor">
+                                <h6><a href="#">@item.tenPhim</a></h6>
+                                <p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+                            </div>
+                        </div>
+                    }
+
+
+
+
+                </div>
+                <ul class="pagination">
+                    <li class="icon-prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">...</a></li>
+                    <li><a href="#">21</a></li>
+                    <li><a href="#">22</a></li>
+                    <li class="icon-next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+

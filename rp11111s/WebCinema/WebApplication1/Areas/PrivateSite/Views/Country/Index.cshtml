@@ -1,0 +1,229 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6 d-flex align-items-stretch">
+            <div class="card w-100">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <h5 class="card-title fw-600 mb-4">Danh sách quốc gia</h5>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <input class="form-control" placeholder="Tìm kiếm ..." id="searchCountry" />
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-post text-nowrap mb-0 align-middle">
+                            <thead class="text-dark fs-4">
+                                <tr>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">STT</h6>
+                                    </th>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">Tên quốc gia</h6>
+                                    </th>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">Mã ISO</h6>
+                                    </th>
+                                    <th class="">
+                                        <h6 class="fw-600 mb-0">Lệnh</h6>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="table_country"></tbody>
+                        </table>
+                        <div id="messageNotFind" style="margin:auto;display:none; text-align:center;">Không tìm thấy</div>
+                    </div>
+                    <div id="loading" class=" m-auto  mt-4"></div>
+                </div>
+                <div class="card-tools p-5 pt-0 pb-0 m-auto" id="pagination"></div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title fw-semibold mb-4">Quốc gia</h5>
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="form_country" method="post">
+                                <div class="mb-3">
+                                    <label class="form-label">Mã</label>
+                                    <input class="form-control" id="idCountry" disabled />
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Tên quốc gia</label>
+                                    <input class="form-control" id="nameCountry" />
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Mã ISO</label>
+                                    <input class="form-control" id="isoCountry" />
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-2">Lưu</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scriptCountry{
+    <script>
+        var elementTable = $("#table_country");
+        var ms = document.getElementById('messageNotFind');
+        $(document).ready(function () {
+            InsertCoutry();
+            loadData("", null, 3)
+            $("#searchCountry").on("keyup", function (event) {
+                console.log(event);
+                var keyword = $('#searchCountry').val();
+                loadData(keyword, null, 3)
+            });
+        });
+        function loadData(keyword, page, pageSize) {
+            ShowLoading(true);
+            $.ajax({
+                url: '@Url.Action("LoadData","Country")',
+                type: 'GET',
+                dataType: 'json',
+                data: { keyword: keyword, page: page, pageSize: pageSize },
+                success: function (response) {
+                    if (response.status) {
+                        ShowLoading(false)
+                        elementTable.empty();
+                        $.each(response.Data, function (index, country) {
+                            elementTable.append(`<tr>
+                                        <td><h6 class="fw-600 mb-0">${country.sttQuocGia}</h6></td>
+                                        <td><h6 class="fw-600 mb-1">${country.tenQuocGia}</h6></td>
+                                        <td><h6 class="fw-600 mb-1">${country.maISO}</h6></td>
+                                        <td><button type="button" class="btn btn-primary" onclick="EditCountry(${country.sttQuocGia})">Sửa</button>
+                                        <button type="button" class="btn btn-danger m-1" onclick="DeleteCountry(${country.sttQuocGia})">Xóa</button></td>
+                                    </tr>`);
+                        });
+                        ms.style.display = "none"
+                        if ((keyword.length > 0) && response.NumberPage == 0 && response.TotalItem == 0) ms.style.display = "block"
+                        Pagination(keyword, response.CurrentPage, response.NumberPage, response.PageSize);
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        }
+        function InsertCoutry() {
+            $('#form_country').submit(function (e) {
+                e.preventDefault();
+                var country = {
+                    sttQuocGia: $("#idCountry").val(),
+                    tenQuocGia: $("#nameCountry").val(),
+                    maISO: $("#isoCountry").val()
+                };
+                if (country.tenQuocGia != null) {
+                    $.ajax({
+                        url: '@Url.Action("AddCountry", "Country")',
+                        type: 'POST',
+                        data: country,
+                        success: function (response) {
+                            if (response.status) {
+                                Swal.fire({
+                                    position: "center-center",
+                                    icon: "success",
+                                    title: response.message,
+                                    showConfirmButton: true,
+                                    timer: 1500
+                                }).then((result) => {
+                                    if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                                        location.reload(true);
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    position: "center-center",
+                                    icon: "error",
+                                    title: response.message,
+                                    showConfirmButton: true,
+                                    timer: 1500
+                                }).then((result) => {
+                                    if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                                        location.reload(true);
+                                    }
+                                });
+                            }
+                        },
+                        error: function () {
+                            alert('Đã xảy ra lỗi khi thêm quốc gia.');
+                        }
+                    });
+                }
+
+
+            });
+
+        }
+        function DeleteCountry(id) {
+            Swal.fire({
+                title: "Bạn chắc chắn?",
+                text: "Bạn sẽ không thể khôi phục khi đã xóa",
+                icon: "warning",
+                showCancelButton: true,
+                cancelButtonColor: "#d33",
+                cancelButtonText: "Đóng",
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: "Xóa quốc gia"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '@Url.Action("Delete","Country")',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (response) {
+                            if (response.status) {
+                                Swal.fire({
+                                    position: "center-center",
+                                    icon: "success",
+                                    title: response.message,
+                                    showConfirmButton: true,
+                                    timer: 1500
+                                }).then((result) => {
+                                    if (result.dismiss === Swal.DismissReason.timer || result.isConfirmed) {
+                                        location.reload(true);
+                                    }
+                                });
+
+                            } else {
+                                console.log("Xóa không thành công.");
+                            }
+                        },
+                        error: function (error) {
+                            console.error(error);
+                        }
+                    });
+                }
+            });
+        }
+        function EditCountry(id) {
+            $.ajax({
+                url: '@Url.Action("Edit","Country")',
+                type: 'GET',
+                dataType: 'json',
+                data: { id: id },
+                success: function (response) {
+                    if (response.status) {
+                        $('#idCountry').val(response.data.sttQuocGia);
+                        $('#nameCountry').val(response.data.tenQuocGia);
+                        $('#isoCountry').val(response.data.maISO);
+                    } else {
+                        alert("Lấy dữ liệu lên thất bại !")
+                    }
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        }
+    </script>
+}
